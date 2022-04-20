@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D rigidbody2D;
     public float speed;
-    private bool isGameWon = false;
+    public bool isGameWon = false;
     public GameObject gameWonPanel;
 
     // Start is called before the first frame update
@@ -55,6 +55,4 @@ public class PlayerController : MonoBehaviour
             isGameWon = true;
         }
     }
-
-    private void
 }
