@@ -1,13 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D rigidbody2D;
     public float speed;
-    private bool isGameWon = false;
+    private bool isGameOver = false;
     public GameObject gameWonPanel;
+    public GameObject gameLostPanel;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +20,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isGameWon)
+        if(isGameOver)
         {
             return;
         }
@@ -52,7 +54,22 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Level Complete!!!");
             gameWonPanel.SetActive(true);
-            isGameWon = true;
+            isGameOver = true;
         }
+
+        else if (other.tag == "Enemy")
+        {
+            Debug.Log("Level Failed!!!");
+            gameLostPanel.SetActive(true);
+            isGameOver = true;
+        }
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Debug.Log("Button Clicked");
+        //gameWonPanel.SetActive(false);
+        //isGameWon = false;
     }
 }
